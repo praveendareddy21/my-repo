@@ -1,0 +1,41 @@
+import heapq
+graph = {'a': {'w': 14, 'x': 7, 'y': 9},
+            'b': {'w': 9, 'z': 6},
+            'w': {'a': 14, 'b': 9, 'y': 2},
+            'x': {'a': 7, 'y': 10, 'z': 15},
+            'y': {'a': 9, 'w': 2, 'x': 10, 'z': 11},
+            'z': {'b': 6, 'x': 15, 'y': 11}}
+    
+def shortest_path(G, start, end):
+    def flatten(L):       # Flatten linked list of form [0,[1,[2,[]]]]
+        while len(L) > 0:
+            yield L[0]
+            L = L[1]
+
+    q = [(0, start , ())]  # Heap of (cost, path_head, path_rest).
+    visited = set()       # Visited vertices.
+    while True:
+        (cost, v1, path) = heapq.heappop(q)
+        if v1 not in visited:
+            visited.add(v1)
+            if v1 == end:
+                return list(flatten(path))[::-1] + [v1]
+            path = (v1, path)
+            for (v2, cost2) in G[v1].iteritems():
+                if v2 not in visited:
+                    heapq.heappush(q, (cost + cost2, v2, path))
+def shortestPath2(graph, start, end):
+    queue = [(0, start, [])]
+    seen = set()
+    while True:
+        (cost, v, path) = heapq.heappop(queue)
+        if v not in seen:
+            path = path + [v]
+            seen.add(v)
+            if v == end:
+                return cost, path
+            for (next, c) in graph[v].iteritems():
+                heapq.heappush(queue, (cost + c, next, path))                    
+
+a=shortestPath2(graph,'a','b')
+print a
