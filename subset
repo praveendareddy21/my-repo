@@ -1,1 +1,14 @@
 # this does nothing
+def subsum(set,sum,index):
+    if index==len(set)-1 :
+        if sum==set[index]:
+            return True
+        else :
+            return False
+        
+    else :
+        if sum==set[index]:
+            return True
+        return (subsum(set,sum-set[index],index+1) or subsum(set,sum,index+1))
+l=[3, 34,5 , 12, 10, 4,4,7,8,2,4,12] 
+print subsum(l,210,0)   
