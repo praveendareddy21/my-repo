@@ -1,0 +1,40 @@
+'''
+
+d=[]
+sr=raw_input("")
+for i in sr :
+    if len(d)==0 :
+        d.append(i)
+        #print d
+        continue
+    if i == d[len(d)-1] :
+        d.pop()
+    else :
+        d.append(i)
+s=''
+for i in d :
+    s=s+i
+print s
+'''
+def recdup(str):
+    if len(str)==1 :
+        return str
+    a=recdup(str[1:])
+    if a[0]==str[0]:
+        return a[1:]
+    else :
+        return str[0]+a
+print recdup('azxxzyh')
+from collections import deque
+def recdupdeque(str):
+    d=deque()
+    for i in str :
+        if len(d)==0 :
+            d.appendleft(i)
+            continue
+        if d[0]==i :
+            d.popleft()
+        else :
+            d.appendleft(i)
+    print d
+recdupdeque('azxxyyjk')
