@@ -1,0 +1,55 @@
+import sys
+sys.stdin=open('C:/Python27/input.txt')
+################################# input from file as stdin################
+def testf(list,index,seen):
+
+  
+    k=index
+
+    fl=0
+    for l in range(len(list)) :
+        #print seen
+        #print str(k)+'$$'+str(l)
+        if k==l :
+            fl=fl+1
+            continue
+        if l in seen :
+            fl=fl+1
+            continue 
+        if list[k][l]==1 :
+ 
+            seen.append(k)
+      
+            if testf(list,l,seen):
+                return True
+            else :
+                seen.pop()
+    
+    if fl==len(list) :
+        return True
+    else :
+        #print 'endl'
+        return False
+                
+test=int(raw_input(""))
+for i in range(test):
+    num=int(raw_input(""))
+    list=[]
+    for j in range(num):
+        li2=[]
+        #li2.extend(map(lambda x :int(x),raw_input("").split(' ')))
+        stri=raw_input("")
+        for i in stri :
+            li2.append(int(i))
+            
+            
+        list.append(li2)
+    res=[]
+    for k in range(len(list)) :
+        if testf(list,k,[]) :
+            res.append(k+1)
+    print len(res)
+    for i in res :
+        print i
+            
+
