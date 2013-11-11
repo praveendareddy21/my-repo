@@ -1,0 +1,29 @@
+test=int(raw_input(""))
+for inde in range(test) :
+    ra=raw_input("st")
+    li=ra.split()
+    li=[int(x) for x in li ]
+    v1=float(li[1]) / li[2] #size /
+    v2=float(li[3]) / li[4]
+    val=0
+    if v1 < v2 :
+        co=li[0]/li[1]
+        val=co*li[2]
+        rem=li[0]-co*li[1]
+        c1=rem/li[3]
+        val=val+c1*li[4]
+    elif v2 < v1 :
+        co=li[0]/li[1]
+        val=co*li[2]
+        rem=li[0]-co*li[1]
+        c1=rem/li[3]
+        val=val+c1*li[4]
+    else :
+        if li[1]<li[3] :#smaller the better
+            val=li[0]/li[1]*li[2]
+        elif li[3] <li[1]:
+            val=li[0]/li[3]*li[4]
+        else :
+            val=li[0]/li[1]*li[2]
+    print val
+        
