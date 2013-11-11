@@ -1,0 +1,22 @@
+from collections import OrderedDict
+
+class DefaultOrderedDict(OrderedDict):
+    def __missing__(self, key):
+        self[key] = type(self)()
+        return self[key]
+d=DefaultOrderedDict()
+d['a']['c']['d']=1234
+d['as'][4][2]='sdf'
+d[3][4][2]=322
+print [(i, j, k, d[i][j][k]) for i in d for j in d[i] for k in d[i][j]]
+it=d.__iter__()
+print it.next()
+print it.next()
+print it.next()
+#print it.next()
+c={1:1,2:2,3:3}
+for k ,v in c.items() :
+    print( '{} -- {}'.format(k,v))
+b='dsf sdfs'
+print b.join(['122','2323'])
+print b
