@@ -1,0 +1,25 @@
+class A(object):
+    x = 'Ac'
+    def f(self):
+        return self.x
+
+class B(A):
+    x = 'Bc'
+    def f(self):
+        return self.x
+
+class C(A):
+    x = 'Cc'
+    def f(self):
+        return self.x
+
+class D(B, C):
+    x = 'Dc'
+    def __init__(self):
+        self.x = 'Di'
+    def f(self):
+        return self.x
+
+print D.__mro__
+d = D()
+print super(D,d).x
